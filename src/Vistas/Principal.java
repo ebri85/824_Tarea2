@@ -5,6 +5,8 @@
  */
 package Vistas;
 
+import Clases.Codorniz;
+
 /**
  *
  * @author esau_br
@@ -162,6 +164,11 @@ public class Principal extends javax.swing.JFrame {
         btn_calcular.setFont(new java.awt.Font("DejaVu Sans", 1, 18)); // NOI18N
         btn_calcular.setText("CALCULAR");
         btn_calcular.setToolTipText("");
+        btn_calcular.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_calcularActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout Contenedor1Layout = new javax.swing.GroupLayout(Contenedor1);
         Contenedor1.setLayout(Contenedor1Layout);
@@ -218,6 +225,13 @@ public class Principal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btn_calcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_calcularActionPerformed
+        
+        
+        
+        
+    }//GEN-LAST:event_btn_calcularActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -251,7 +265,36 @@ public class Principal extends javax.swing.JFrame {
                 new Principal().setVisible(true);
             }
         });
+        
+        int cant;
+        
+        Codorniz[] codornices = new Codorniz[2];
+        
+        
     }
+    
+     public static double RealizarCalculo(int cant, double prec)
+               /*realiza el calculo, tomando en cosideracion la cantidad de
+               codornices */
+       {
+           
+           double resultado;
+           
+           resultado = (cant%2 ==0)? cant : cant+1;
+             
+           return resultado;
+           
+       }
+       
+        public static void GeneraTipoCodornices(Codorniz[] c)
+        {
+            c[0] = new Codorniz(1, "Polluelo", "Crecimiento", 15840);
+            c[1] = new Codorniz(2, "Joven", "Desarrollo", 30045);
+            c[2] = new Codorniz(3, "Adulto", "Mantenimiento", 43200);
+            
+        }
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Contenedor1;
