@@ -16,17 +16,26 @@ public class Descuento {
     
     private int cantH;
     private double descuento;
+   
     
     public Descuento()
     {
         cantH = 0 ;
-        descuento =  0.00 ;
+        descuento = 0.00;
+        
     }
     
     public Descuento(int cantH)
       {
         this.cantH = cantH;
-        descuento = 0.00;
+      }
+    
+    public Descuento(int cantH, double descuento)
+      {
+        this.cantH = cantH;
+        this.descuento = descuento;
+        
+        
       }
     
 //    public Descuento(int cantH, double descuento)
@@ -47,23 +56,16 @@ public class Descuento {
         
     }
     
-    private void setDescuento(double descuento)
+    public void setDescuento(double descuento)
     {
-        /*** ----Este Metodo Valida el siguiente Enunciado------
-               El proveedor le dará un máximo de 20% de 
-               descuento sobre el total de la compra si la
-                empresa le da una suma mayor o igual a 60 huevos.*/
-        
-        int cant = getCantH();
-        double formula = ((0.004*cant)-0.04);
-        
-        descuento =(cant<60)? formula : 0.20; 
-        
-        this.descuento = descuento;
+      double formula = ((0.004*getCantH())-0.04);
+      descuento =(getCantH()<60)? formula : 0.20; 
+      
+        this.descuento = Math.abs(descuento);
     }
     
     public double getDescuento()
-    {
+    {   
         return descuento;
     }
 

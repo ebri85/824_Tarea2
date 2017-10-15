@@ -7,8 +7,6 @@ package Vistas;
 
 import Clases.Codorniz;
 import Clases.Descuento;
-import java.util.HashSet;
-import java.util.Set;
 import javax.swing.JOptionPane;
 
 /**
@@ -17,9 +15,9 @@ import javax.swing.JOptionPane;
  */
 public class Principal extends javax.swing.JFrame {
     
-    public Codorniz[] codornices;
+    Codorniz[] codornices = new Codorniz[3];
     public int polluelos, adultos, jovenes, cantH,cantSacosP,cantSacosJ,cantSacosA;
-    public double costoP =0-0 ,costoA=0.0, costoJ =0.0 ,totalS=0.0,totalC=0.0, desc = 0.00 ;
+    public double costoP,costoA , costoJ ,totalS, totalC , desc;
     /**
      * Creates new form Principal
      * 
@@ -244,19 +242,19 @@ public class Principal extends javax.swing.JFrame {
         String mensaje= "";
         
         mensaje+= "Cantidad de Codornices Polluelos = " + polluelos + "\n" +
-                "Cantidad de Sacos = " + cantSacosP + "\n" +
-                "Costo  =  ₡" + costoP  + "\n";
+                "Cantidad de Sacos para Polluelos = " + cantSacosP + "\n" +
+                "Costo  =  ₡" + costoP  + "\n*****************\n" ;
        
         mensaje+= "Cantidad de Codornices Jovenes = " + jovenes + "\n" +
-                "Cantidad de Sacos = " + cantSacosJ + "\n" +
-                "Costo  =  ₡" + costoJ + "\n";
+                "Cantidad de Sacos para Jovenes = " + cantSacosJ + "\n" +
+                "Costo  =  ₡" + costoJ + "\n*****************\n" ;
         
         mensaje+= "Cantidad de Codornices Adultos = " + adultos + "\n" +
-                "Cantidad de Sacos = " + cantSacosA + "\n" +
-                "Costo  =  ₡" + costoA + "\n";  
+                "Cantidad de Sacos para Adultos = " + cantSacosA + "\n" +
+                "Costo  =  ₡" + costoA + "\n*****************\n" ; 
         
-        mensaje += "Costo Total sin Descuento =  ₡" + totalS + "\n";
-        mensaje += "Costo Total con Descuento =  ₡" + totalC + "\n";
+        mensaje += "Costo Total sin Descuento =  ₡" + totalS + "\n*****************\n" ;
+        mensaje += "Costo Total con Descuento =  ₡" + totalC + "\n*****************\n" ;
         
                 
         return mensaje;
@@ -279,7 +277,9 @@ public class Principal extends javax.swing.JFrame {
             adultos     = Integer.parseInt(txt_cantAdultos.getText());
             cantH       = Integer.parseInt(txt_cantHuevos.getText());
 
-            descuento = new Descuento(cantH);
+            descuento = new Descuento();
+            descuento.setCantH(cantH);
+            descuento.setDescuento(0);
             desc = descuento.getDescuento();
             
             cantSacosP = CantidadSacos(polluelos);
@@ -287,8 +287,8 @@ public class Principal extends javax.swing.JFrame {
             cantSacosA = CantidadSacos(adultos);
             
             costoP = CalculaCosto(cantSacosP,1,codornices);
-            costoJ = CalculaCosto(cantSacosJ, 1, codornices);
-            costoA = CalculaCosto(cantSacosA, 1, codornices);
+            costoJ = CalculaCosto(cantSacosJ, 2, codornices);
+            costoA = CalculaCosto(cantSacosA, 3, codornices);
            
             totalS = costoP + costoJ + costoA;
             totalC = totalS -(totalS * desc);    
@@ -296,6 +296,8 @@ public class Principal extends javax.swing.JFrame {
             
            
              txtML_resultado.setText(ImprimeMensaje());
+             
+             
              
             
           } catch(Exception e)
@@ -368,29 +370,29 @@ public class Principal extends javax.swing.JFrame {
                 case 1 :
                     precio = c[0].getPrecioAlimento();
                     
-                    resultado = cantSacos * precio;
+                    return resultado = cantSacos * precio;
                     
-                    break;
+                    
                     
                 case 2 :
                     precio = c[1].getPrecioAlimento();
                     
-                    resultado = cantSacos * precio;
+                    return resultado = cantSacos * precio;
                     
-                    break;
+                    
                     
                 case 3 :
                     precio = c[2].getPrecioAlimento();
                     
-                    resultado = cantSacos * precio;                    
-       
+                    return resultado = cantSacos * precio;                    
+                     
               }
                  
          
          return 0;
        }
        
-        public static void GeneraTipoCodornices(Codorniz[] c)
+        public void GeneraTipoCodornices(Codorniz[] c)
         {
             c[0] = new Codorniz(1, "Polluelo", "Crecimiento", 15840);
             c[1] = new Codorniz(2, "Joven", "Desarrollo", 30045);
