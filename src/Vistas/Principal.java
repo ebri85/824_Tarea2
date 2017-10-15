@@ -239,6 +239,7 @@ public class Principal extends javax.swing.JFrame {
 
       public String ImprimeMensaje()
       {
+        //Metodo que Imprime Mensajes
         String mensaje= "";
         
         mensaje+= "Cantidad de Codornices Polluelos = " + polluelos + "\n" +
@@ -268,38 +269,56 @@ public class Principal extends javax.swing.JFrame {
         Descuento descuento;
         GeneraTipoCodornices(codornices);
         
-        String mensaje ="";
+   
+       
         
         try 
           {
-            polluelos   = Integer.parseInt(txt_cantPolluelos.getText());
-            jovenes     = Integer.parseInt(txt_cantJovenes.getText());
-            adultos     = Integer.parseInt(txt_cantAdultos.getText());
-            cantH       = Integer.parseInt(txt_cantHuevos.getText());
+            int op;
+            
+                 
+                polluelos   = Integer.parseInt(txt_cantPolluelos.getText());
+                jovenes     = Integer.parseInt(txt_cantJovenes.getText());
+                adultos     = Integer.parseInt(txt_cantAdultos.getText());
+                cantH       = Integer.parseInt(txt_cantHuevos.getText());
 
-            descuento = new Descuento();
-            descuento.setCantH(cantH);
-            descuento.setDescuento(0);
-            desc = descuento.getDescuento();
-            
-            cantSacosP = CantidadSacos(polluelos);
-            cantSacosJ = CantidadSacos(jovenes);
-            cantSacosA = CantidadSacos(adultos);
-            
-            costoP = CalculaCosto(cantSacosP,1,codornices);
-            costoJ = CalculaCosto(cantSacosJ, 2, codornices);
-            costoA = CalculaCosto(cantSacosA, 3, codornices);
-           
-            totalS = costoP + costoJ + costoA;
-            totalC = totalS -(totalS * desc);    
-            
-            
-           
-             txtML_resultado.setText(ImprimeMensaje());
-             
-             
-             
-            
+                descuento = new Descuento();
+                descuento.setCantH(cantH);
+                descuento.setDescuento(0);
+                desc = descuento.getDescuento();
+
+                cantSacosP = CantidadSacos(polluelos);
+                cantSacosJ = CantidadSacos(jovenes);
+                cantSacosA = CantidadSacos(adultos);
+
+                costoP = CalculaCosto(cantSacosP,1,codornices);
+                costoJ = CalculaCosto(cantSacosJ, 2, codornices);
+                costoA = CalculaCosto(cantSacosA, 3, codornices);
+
+                totalS = costoP + costoJ + costoA;
+                totalC = totalS -(totalS * desc);    
+
+
+
+                 txtML_resultado.setText(ImprimeMensaje());
+                 
+                 
+               op =  JOptionPane.showConfirmDialog(null, "Desea Realizar Otro Calculo","AVISO",JOptionPane.YES_NO_CANCEL_OPTION,JOptionPane.YES_NO_CANCEL_OPTION);
+               
+               if(op==0)
+                 {
+                   txt_cantAdultos.setText("");
+                   txt_cantJovenes.setText("");
+                   txt_cantPolluelos.setText("");
+                   txt_cantHuevos.setText("");
+                   txtML_resultado.setText("");
+                   
+                 } else if (op==1)
+                   {
+                     System.exit(0);
+                   }
+ 
+
           } catch(Exception e)
             {
                 JOptionPane.showMessageDialog(null,e.getMessage(),"ERROR" , JOptionPane.ERROR_MESSAGE);
