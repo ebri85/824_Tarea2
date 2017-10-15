@@ -297,10 +297,8 @@ public class Principal extends javax.swing.JFrame {
 
                 totalS = costoP + costoJ + costoA;
                 totalC = totalS -(totalS * desc);    
-
-
-
-                 txtML_resultado.setText(ImprimeMensaje());
+                
+                txtML_resultado.setText(ImprimeMensaje());
                  
                  
                op =  JOptionPane.showConfirmDialog(null, "Desea Realizar Otro Calculo","AVISO",JOptionPane.YES_NO_CANCEL_OPTION,JOptionPane.YES_NO_CANCEL_OPTION);
@@ -321,7 +319,7 @@ public class Principal extends javax.swing.JFrame {
 
           } catch(Exception e)
             {
-                JOptionPane.showMessageDialog(null,e.getMessage(),"ERROR" , JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null,e.toString(),"ERROR" , JOptionPane.ERROR_MESSAGE);
             }
 
     }//GEN-LAST:event_btn_calcularActionPerformed
@@ -381,6 +379,7 @@ public class Principal extends javax.swing.JFrame {
      
      public static double CalculaCosto(int cantSacos,int pos, Codorniz[] c)
        {
+         //Metodo que Calcula el Costo de Los Sacos
          double resultado;
          double precio;
          
