@@ -49,7 +49,7 @@ public class main {
                                     cant = entrada.nextInt();
                                     totalP= RealizarCalculo(cant,codornices[i].getPrecioAlimento());
                                     
-                                    totalP -= codornices[i].CalculaDescuento(totalP,codornices[i]);
+                                 //   totalP -= codornices[i].CalculaDescuento(totalP,codornices[i]);
                                     
                                     break;
                                  
@@ -58,14 +58,14 @@ public class main {
                                      cant = entrada.nextInt();
                                     totalJ= RealizarCalculo(cant,codornices[i].getPrecioAlimento());
                                     
-                                    totalJ -= codornices[i].CalculaDescuento(totalJ,codornices[i]);
+                                    //totalJ -= codornices[i].CalculaDescuento(totalJ,codornices[i]);
                                     
                                     break;
                                 case 2:
                                      cant = entrada.nextInt();
                                     totalA= RealizarCalculo(cant,codornices[i].getPrecioAlimento());
                                     
-                                    totalA -= codornices[i].CalculaDescuento(totalA,codornices[i]);
+                                   // totalA -= codornices[i].CalculaDescuento(totalA,codornices[i]);
                                     
                                     
                                     break;

@@ -6,18 +6,31 @@
 package Vistas;
 
 import Clases.Codorniz;
+import Clases.Descuento;
+import java.util.HashSet;
+import java.util.Set;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author esau_br
  */
 public class Principal extends javax.swing.JFrame {
-
+    
+    public Codorniz[] codornices;
+    public int polluelos, adultos, jovenes, cantH,cantSacosP,cantSacosJ,cantSacosA;
+    public double costoP =0-0 ,costoA=0.0, costoJ =0.0 ,totalS=0.0,totalC=0.0, desc = 0.00 ;
     /**
      * Creates new form Principal
+     * 
+     * 
+     * 
      */
+    
+    
     public Principal() {
         initComponents();
+
     }
 
     /**
@@ -27,7 +40,8 @@ public class Principal extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         jLabel1 = new javax.swing.JLabel();
         Contenedor1 = new javax.swing.JPanel();
@@ -39,7 +53,7 @@ public class Principal extends javax.swing.JFrame {
         txt_cantJovenes = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         txt_cantAdultos = new javax.swing.JTextField();
-        txt_cantAdultos1 = new javax.swing.JTextField();
+        txt_cantHuevos = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         ContenedorOutput = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
@@ -75,7 +89,7 @@ public class Principal extends javax.swing.JFrame {
 
         txt_cantAdultos.setName("txt_Polluelos"); // NOI18N
 
-        txt_cantAdultos1.setName("txt_Polluelos"); // NOI18N
+        txt_cantHuevos.setName("txt_Polluelos"); // NOI18N
 
         jLabel6.setFont(new java.awt.Font("DejaVu Sans", 0, 14)); // NOI18N
         jLabel6.setText("Huevos: ");
@@ -98,7 +112,7 @@ public class Principal extends javax.swing.JFrame {
                             .addComponent(jLabel5))
                         .addGap(18, 18, 18)
                         .addGroup(ContenedorInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txt_cantAdultos1)
+                            .addComponent(txt_cantHuevos)
                             .addComponent(txt_cantAdultos)
                             .addComponent(txt_cantJovenes)
                             .addComponent(txt_cantPolluelos))))
@@ -124,7 +138,7 @@ public class Principal extends javax.swing.JFrame {
                 .addGap(46, 46, 46)
                 .addGroup(ContenedorInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(txt_cantAdultos1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_cantHuevos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(37, Short.MAX_VALUE))
         );
 
@@ -133,6 +147,7 @@ public class Principal extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("DejaVu Sans", 1, 18)); // NOI18N
         jLabel7.setText("Resultado e Informacion");
 
+        txtML_resultado.setBackground(new java.awt.Color(159, 184, 236));
         txtML_resultado.setColumns(20);
         txtML_resultado.setRows(5);
         txtML_resultado.setName("resultados"); // NOI18N
@@ -164,8 +179,10 @@ public class Principal extends javax.swing.JFrame {
         btn_calcular.setFont(new java.awt.Font("DejaVu Sans", 1, 18)); // NOI18N
         btn_calcular.setText("CALCULAR");
         btn_calcular.setToolTipText("");
-        btn_calcular.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btn_calcular.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btn_calcularActionPerformed(evt);
             }
         });
@@ -175,17 +192,14 @@ public class Principal extends javax.swing.JFrame {
         Contenedor1Layout.setHorizontalGroup(
             Contenedor1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(Contenedor1Layout.createSequentialGroup()
-                .addGroup(Contenedor1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(16, 16, 16)
+                .addGroup(Contenedor1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btn_calcular, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(Contenedor1Layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addComponent(btn_calcular, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(Contenedor1Layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
                         .addComponent(ContenedorInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(ContenedorOutput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 7, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addComponent(ContenedorOutput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
         Contenedor1Layout.setVerticalGroup(
             Contenedor1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -225,11 +239,70 @@ public class Principal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+      public String ImprimeMensaje()
+      {
+        String mensaje= "";
+        
+        mensaje+= "Cantidad de Codornices Polluelos = " + polluelos + "\n" +
+                "Cantidad de Sacos = " + cantSacosP + "\n" +
+                "Costo  =  ₡" + costoP  + "\n";
+       
+        mensaje+= "Cantidad de Codornices Jovenes = " + jovenes + "\n" +
+                "Cantidad de Sacos = " + cantSacosJ + "\n" +
+                "Costo  =  ₡" + costoJ + "\n";
+        
+        mensaje+= "Cantidad de Codornices Adultos = " + adultos + "\n" +
+                "Cantidad de Sacos = " + cantSacosA + "\n" +
+                "Costo  =  ₡" + costoA + "\n";  
+        
+        mensaje += "Costo Total sin Descuento =  ₡" + totalS + "\n";
+        mensaje += "Costo Total con Descuento =  ₡" + totalC + "\n";
+        
+                
+        return mensaje;
+      }
+    
+    
     private void btn_calcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_calcularActionPerformed
+        /*Este Metodo Calcula todo segun los datos ingresados
         
+        */
+        Descuento descuento;
+        GeneraTipoCodornices(codornices);
         
+        String mensaje ="";
         
-        
+        try 
+          {
+            polluelos   = Integer.parseInt(txt_cantPolluelos.getText());
+            jovenes     = Integer.parseInt(txt_cantJovenes.getText());
+            adultos     = Integer.parseInt(txt_cantAdultos.getText());
+            cantH       = Integer.parseInt(txt_cantHuevos.getText());
+
+            descuento = new Descuento(cantH);
+            desc = descuento.getDescuento();
+            
+            cantSacosP = CantidadSacos(polluelos);
+            cantSacosJ = CantidadSacos(jovenes);
+            cantSacosA = CantidadSacos(adultos);
+            
+            costoP = CalculaCosto(cantSacosP,1,codornices);
+            costoJ = CalculaCosto(cantSacosJ, 1, codornices);
+            costoA = CalculaCosto(cantSacosA, 1, codornices);
+           
+            totalS = costoP + costoJ + costoA;
+            totalC = totalS -(totalS * desc);    
+            
+            
+           
+             txtML_resultado.setText(ImprimeMensaje());
+             
+            
+          } catch(Exception e)
+            {
+                JOptionPane.showMessageDialog(null,e.getMessage(),"ERROR" , JOptionPane.ERROR_MESSAGE);
+            }
+
     }//GEN-LAST:event_btn_calcularActionPerformed
 
     /**
@@ -265,25 +338,56 @@ public class Principal extends javax.swing.JFrame {
                 new Principal().setVisible(true);
             }
         });
-        
-        int cant;
-        
-        Codorniz[] codornices = new Codorniz[2];
-        
-        
+ 
     }
     
-     public static double RealizarCalculo(int cant, double prec)
-               /*realiza el calculo, tomando en cosideracion la cantidad de
+ 
+    
+     public static int CantidadSacos(int cantCodor)
+               /*realiza el calculo de sacos, tomando en consideracion la cantidad de
                codornices */
        {
+           double consumo =0.5; //consume saco c/u codornices
            
            double resultado;
            
-           resultado = (cant%2 ==0)? cant : cant+1;
-             
-           return resultado;
+           resultado = (cantCodor%2 ==0)? (cantCodor * consumo) : ((cantCodor*consumo)+consumo);
            
+             
+           return (int)resultado;
+           
+       }
+     
+     public static double CalculaCosto(int cantSacos,int pos, Codorniz[] c)
+       {
+         double resultado;
+         double precio;
+         
+            switch(pos)
+              {
+                case 1 :
+                    precio = c[0].getPrecioAlimento();
+                    
+                    resultado = cantSacos * precio;
+                    
+                    break;
+                    
+                case 2 :
+                    precio = c[1].getPrecioAlimento();
+                    
+                    resultado = cantSacos * precio;
+                    
+                    break;
+                    
+                case 3 :
+                    precio = c[2].getPrecioAlimento();
+                    
+                    resultado = cantSacos * precio;                    
+       
+              }
+                 
+         
+         return 0;
        }
        
         public static void GeneraTipoCodornices(Codorniz[] c)
@@ -293,6 +397,8 @@ public class Principal extends javax.swing.JFrame {
             c[2] = new Codorniz(3, "Adulto", "Mantenimiento", 43200);
             
         }
+        
+        
     
     
 
@@ -311,7 +417,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea txtML_resultado;
     private javax.swing.JTextField txt_cantAdultos;
-    private javax.swing.JTextField txt_cantAdultos1;
+    private javax.swing.JTextField txt_cantHuevos;
     private javax.swing.JTextField txt_cantJovenes;
     private javax.swing.JTextField txt_cantPolluelos;
     // End of variables declaration//GEN-END:variables

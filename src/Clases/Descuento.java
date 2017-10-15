@@ -23,11 +23,17 @@ public class Descuento {
         descuento =  0.00 ;
     }
     
-    public Descuento(int cantH, double descuento)
-    {
+    public Descuento(int cantH)
+      {
         this.cantH = cantH;
-        this.descuento = descuento;
-    }
+        descuento = 0.00;
+      }
+    
+//    public Descuento(int cantH, double descuento)
+//    {
+//        this.cantH = cantH;
+//        this.descuento = descuento;
+//    }
     
     public void setCantH(int cantH)
     {
@@ -41,7 +47,7 @@ public class Descuento {
         
     }
     
-    public void setDescuento(double descuento)
+    private void setDescuento(double descuento)
     {
         /*** ----Este Metodo Valida el siguiente Enunciado------
                El proveedor le dará un máximo de 20% de 
